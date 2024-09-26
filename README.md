@@ -1,9 +1,9 @@
 # Three.js journey
 hey there my name is zyad and this is my three.js learning journey i'm using the three.js documentaion and three.js journey course by Bruno smith as a reference
-# Third lesson
+# fourth lesson
 - here is what we will do in this lesson
 
-    - learn how to animate objects
+    - get deep with how to control camera object
 ## setting up 
 your directory structure should be looking like this
 ```html
@@ -16,67 +16,67 @@ your directory structure should be looking like this
 ```
 and your files content should be like how we left it in the first lesson with that let's start this lesson
 
-- animation 
-    - to create an animation in THREE.js we use window.requestAnimationFrame() which is a function that is applied on the next frame so you might think that we could create a func that calls inside it requestAnimationFrame and we pass the function we created as an argument to it go ahead and paste this code
+- camera  
+       last lesson we learned about animation and by now you propably know how to change the position, rotation and the scale of the camera and how to animate it but in this lesson we'll learn how to make the camera follow our cusor and much more things and there're tow ways to do that the easy way and the hard way let's start with the hard way
+    1. hard method  
+    here we'll get the cursor x and y location and use this number to control the position of the camera first create an object called cursor and give it two properties xAxe, yAxe and assign them to zero
     ```js
-    const loob = () => {
-        //what we want to do
-        mesh.position.x += 0.01
-
-        //render the renderer
-        renderer.render(scene, camera)
-
-        //loop
-        window.requestAnimationFrame(loob)
+    const cursor = {
+        xAxe: 0,
+        yAxe: 0
     }
     ```
-    you should see your mesh moving right go ahead and play with other properities scale, rotation there is an issue with this animation let me explain to you what is it; some screens have 60 fps and others have 120 fps so the 120 one is gonna run the animation faster so how could we make all screens run the animation at the same speed? we can use the Date object `Date.now()` which returns time in milliseconds and we could get the delta 'the differnce between time now and the previous one' we can do it like that
+    then create an event listener func that listens two the mousemove and assign the movement to the cursor properties
     ```js
-    let time = Date.now()
-
-    const loob = () => {
-        // get the delta 
-        const currentTime = Date.now()
-        const delta = currentTime - time
-        time = currentTime
-
-        // animate
-        mesh.rotation.y += 0.01 * delta
-
-        //render
-        renderer.render(scene, camera)
-        window.requestAnimationFrame(loob)
-    }
-
-    loob()
+    window.addEventListener("mousemove", (e) => {
+        cursor.xAxe = e.clientX
+        cursor.yAxe = e.clientY
+    })
     ```
-    there's also another way to do the same thing with three.js clock and getElapsedTime method which returns how many seconds has elapsed since creating the clock and here's how to do it 
-    ```js
-    let clock = new THREE.Clock()
-
-    const loob = () => {
-        // get the delta 
-        const elapsedSeconds = clock.getElapsedTime()
-        // animate
-        mesh.rotation.y = 1 * elapsedSeconds
-
-        //render
-        renderer.render(scene, camera)
-        window.requestAnimationFrame(loob)
-    }
-
-    loob()
-    ```
-    you could try using Math.cos() and Math.sin() and see what happenes, we can also use the animation on the camera try it and see what happens, you can also use a library to do the same things we've been doing, open your terminal and paste this command `npm install gsap@3.12` now open your js file and import it like this `import gsap from 'gsap'` now you can use it like this 
+    you'll notice that the number is too high to make it between -1 and 1
     ```js 
-    gsap.to(mesh.position, {duration: 1, delay: 1, x: 2})
+    cursor.xAxe = 2 *(e.clientX / sizes.width - 0.5)
+    cursor.yAxe = -2 *(e.clientY / sizes.height - 0.5)
+    console.log(`${cursor.yAxe}y, ${cursor.xAxe}x`)
+    ```
+    now how we could control the camera position with this data, create a function like the one we used to use to create an animation and update the position of the camera inside it 
+    ```js
     const loob = () => {
+        //let elapsedTime = clock.getElapsedTime()
         
+        //rotation
+        //mesh.rotation.y = elapsedTime
+
+        //camera
+        camera.position.x = cursor.xAxe 
+        camera.position.y = cursor.yAxe
+
         //render
         renderer.render(scene, camera)
         window.requestAnimationFrame(loob)
     }
 
     loob()
-    ``` 
-    you can use whatever way you feel easier to make animation and with that this lesson is over.
+    ```
+    now you can try and move your cursor and your camera will move with it, now you might be wondring how could we make the camera make a loop around the cube and here comes the math i know most of us hate maths so i'll just drop the code and you can copy and paste it
+    ```js
+    camera.position.x = Math.sin(cursor.xAxe  * Math.PI) * 3
+    camera.position.z = Math.cos(cursor.xAxe  * Math.PI) * 3
+    camera.position.y = cursor.yAxe * 3
+    camera.lookAt(mesh.position)
+    ```
+    2. easy method  
+    we can use built in controls in the three.js library, there are many types of controls but for now let's use OrbitControls first although its in the three.js library you have to import it seperatly in the top of your js file paste this `import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'` now you const your controls 
+    ```js 
+    const controls = new OrbietControls(camera, canvas)
+    ```
+    make sure to paste this code after creating camera, now you can move your camera as you like, drag and drop; you'll notice that rotating your camera isn't smooth to make it smooth you need to enaple Damping and update your controls in your loop func 
+    ```js 
+    controls.enapleDamping = true
+
+    // in your loop
+    controls.update()
+    ```
+    with this our lesson ends see you in the next lesson
+
+
