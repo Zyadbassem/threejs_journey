@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-
+import gsap from 'gsap'
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
 
@@ -7,29 +7,13 @@ const canvas = document.querySelector('canvas.webgl')
 const scene = new THREE.Scene()
 
 // groub
-const group = new THREE.Group()
 
-const cube1 = new THREE.Mesh(
-    new THREE.BoxGeometry(1, 1, 1),
-    new THREE.MeshBasicMaterial({ color: 0x00ff00 })
-)
-const cube2 = new THREE.Mesh(
+
+const mesh = new THREE.Mesh(
     new THREE.BoxGeometry(1, 1, 1),
     new THREE.MeshBasicMaterial({ color: 0xff0000 })
 )
-const cube3 = new THREE.Mesh(
-    new THREE.BoxGeometry(1, 1, 1),
-    new THREE.MeshBasicMaterial({ color: 0x0000ff })
-)
-cube2.position.x = 2
-cube3.position.x = -2
-group.add(cube1)
-group.add(cube2)
-group.add(cube3)
-group.scale.y = 2
-group.position.y = 1
-group.rotation.x = Math.PI * 0.5
-scene.add(group)
+scene.add(mesh)
 
 //Sizes
 const sizes = {
@@ -38,8 +22,6 @@ const sizes = {
 }
 
 //axes 
-const axes = new THREE.AxesHelper(1)//the length of the axes
-scene.add(axes)
 
 // Camera
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 1000)
@@ -55,4 +37,14 @@ const renderer = new THREE.WebGLRenderer({
 })
 
 renderer.setSize(sizes.width, sizes.height)
-renderer.render(scene, camera)
+
+
+gsap.to(mesh.position, {duration: 1, delay: 1, x: 1, y: 1})
+const loob = () => {
+    
+    //render
+    renderer.render(scene, camera)
+    window.requestAnimationFrame(loob)
+}
+
+loob()

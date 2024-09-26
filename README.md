@@ -1,9 +1,9 @@
 # Three.js journey
 hey there my name is zyad and this is my three.js learning journey i'm using the three.js documentaion and three.js journey course by Bruno smith as a reference
-# second lesson
+# Third lesson
 - here is what we will do in this lesson
 
-    - learn how to change the position, scale, rotation of an object 
+    - learn how to animate objects
 ## setting up 
 your directory structure should be looking like this
 ```html
@@ -16,84 +16,67 @@ your directory structure should be looking like this
 ```
 and your files content should be like how we left it in the first lesson with that let's start this lesson
 
+- animation 
+    - to create an animation in THREE.js we use window.requestAnimationFrame() which is a function that is applied on the next frame so you might think that we could create a func that calls inside it requestAnimationFrame and we pass the function we created as an argument to it go ahead and paste this code
+    ```js
+    const loob = () => {
+        //what we want to do
+        mesh.position.x += 0.01
 
-- position
-    - we dealed with this class in the last lesson when we needed to change the z position of our camera so that we can see our mesh object now we will go deeply into this class 
-        - so how can we change the position of our cube? you can do the same you did with the camera 
-            ```js
-            mesh.position.x = 1
-            mesh.position.y = 0.5
-            mesh.position.z = 0.5
-            ```
-            or there's an easier way to do it 
-            ```js
-            mesh.position.set(1, 0.5, 0.5)
-            ```
-            the x controls the right and left of the object, the y controls the up and lower of the object, the z controls the debth of screen of the object feel free to play around
-            the length functions return the length from the 0 point
-            ```js
-            console.log(mesh.position.length())
-            ```
-            the distanceTo func return the distance to an object (use this code after creating the camera )
-            ```js
-            console.log(mesh.position.distanceTo(camera.position))
-            ```
-            the normalize func normalize the length of an object to 1 
-            ```js
-            mesh.position.normalize()
-            console.log(mesh.position.length())
-            ```
-- Axes helper
-    - the three.js library provide you with an axes helper that you can use 
+        //render the renderer
+        renderer.render(scene, camera)
+
+        //loop
+        window.requestAnimationFrame(loob)
+    }
+    ```
+    you should see your mesh moving right go ahead and play with other properities scale, rotation there is an issue with this animation let me explain to you what is it; some screens have 60 fps and others have 120 fps so the 120 one is gonna run the animation faster so how could we make all screens run the animation at the same speed? we can use the Date object `Date.now()` which returns time in milliseconds and we could get the delta 'the differnce between time now and the previous one' we can do it like that
+    ```js
+    let time = Date.now()
+
+    const loob = () => {
+        // get the delta 
+        const currentTime = Date.now()
+        const delta = currentTime - time
+        time = currentTime
+
+        // animate
+        mesh.rotation.y += 0.01 * delta
+
+        //render
+        renderer.render(scene, camera)
+        window.requestAnimationFrame(loob)
+    }
+
+    loob()
+    ```
+    there's also another way to do the same thing with three.js clock and getElapsedTime method which returns how many seconds has elapsed since creating the clock and here's how to do it 
+    ```js
+    let clock = new THREE.Clock()
+
+    const loob = () => {
+        // get the delta 
+        const elapsedSeconds = clock.getElapsedTime()
+        // animate
+        mesh.rotation.y = 1 * elapsedSeconds
+
+        //render
+        renderer.render(scene, camera)
+        window.requestAnimationFrame(loob)
+    }
+
+    loob()
+    ```
+    you could try using Math.cos() and Math.sin() and see what happenes, we can also use the animation on the camera try it and see what happens, you can also use a library to do the same things we've been doing, open your terminal and paste this command `npm install gsap@3.12` now open your js file and import it like this `import gsap from 'gsap'` now you can use it like this 
     ```js 
-    const axes = new THREE.AxesHelper(2)//the length of the axes
-    scene.add(axes)
-    ```
-    you'll notice that you can't see the z axe that because the camera is in the direction of the axe; change the position of the camera so that you can see the z axe
-- scale object
-    - scale works very much like position you can play around with it
-    ```js
-    mesh.scale.x = 2
-    mesh.scale.y = 0.25
-    mesh.scale.z = 0.5
-    ```
+    gsap.to(mesh.position, {duration: 1, delay: 1, x: 2})
+    const loob = () => {
+        
+        //render
+        renderer.render(scene, camera)
+        window.requestAnimationFrame(loob)
+    }
 
-- rotation object
-    - did you know that you can rotate your object just very similar to the way you change its postition and scale
-    ```js
-    mesh.rotation.x = Math.PI * 0.25
-    mesh.rotation.y = Math.PI * 0.25
-    ```
-    you might be wandring why we use pi so let me tell you the easy way with no much math so when you rotate it 3.14(pi) its a half a rotation so if you want a full rotation you can rotate it pi * 2 and that way you can control your rotation, it's better to use `mesh.rotation.reorder('YXZ')` so that your rotation  doesn't ruin your object, Quaternion is also some kind of rotation you don't need to learn it now cause it's so complicated, the lookAt function is used to make your camera lookat a position of an object you can use it like this
-    ```js
-    camera.lookAt(mesh.position)
-    ```
-- compining transformation
-    - you can use position, rotation, scale in any order just do whatever you like
-
-- grouping
-    - you might want to groub some of your objects so that you can position, scale, rotate all of them at the same time go ahead and delete your cube and paste this code
-    ```js
-    const group = new THREE.Group()
-
-    const cube1 = new THREE.Mesh(
-        new THREE.BoxGeometry(1, 1, 1),
-        new THREE.MeshBasicMaterial({ color: 0x00ff00 })
-    )
-    const cube2 = new THREE.Mesh(
-        new THREE.BoxGeometry(1, 1, 1),
-        new THREE.MeshBasicMaterial({ color: 0xff0000 })
-    )
-    const cube3 = new THREE.Mesh(
-        new THREE.BoxGeometry(1, 1, 1),
-        new THREE.MeshBasicMaterial({ color: 0x0000ff })
-    )
-    cube2.position.x = 2
-    cube3.position.x = -2
-    group.add(cube1)
-    group.add(cube2)
-    group.add(cube3)
-    scene.add(group)
-    ```
-    now try to play around with the scale or position of your groub.
-    and with this we finished our second lesson
+    loob()
+    ``` 
+    you can use whatever way you feel easier to make animation and with that this lesson is over.
