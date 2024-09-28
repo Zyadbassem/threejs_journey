@@ -3,7 +3,7 @@ hey there my name is zyad and this is my three.js learning journey i'm using the
 # fourth lesson
 - here is what we will do in this lesson
 
-    - how to make your canvas at full screen and update it when a user try to resize the window
+    - learn about geometries and vertices and faces
 ## setting up 
 your directory structure should be looking like this
 ```html
@@ -14,52 +14,41 @@ your directory structure should be looking like this
         package.json
         script.js
 ```
-and your js file should have a cube that we can drag and drop with orbietcontrols
+and your js file should be as we left it in the last lesson
 
-### fullsize canvas 
-- to have a fullsize canvas follow these steps
-    1. connect your css file to your html 
-    2. paste this code in your styles.css file
-        ```css
-        .webgl 
-        {
-            position: fixed;
-            top: 0;
-            left: 0;
-        }
-        ```
-    3- run your project and now it should be fullscreen
-### update after resizing
-- if you try to resize your window you'll notice that the canvas isn't responding as you want it to follow these steps to make the resizing work
-    1. we'll use an event listener on the window object and we'll pass 'resize' and a function that updates the sizes of camera, renderer
-         ```js
-        window.addEventListener('resize', () => {
-            // update sizes
-            sizes.width = window.innerWidth
-            sizes.height = window.innerHeight
-
-            //update camera aspect ratio
-            camera.aspect = sizes.width / sizes.height
-            camera.updateProjectionMatrix()
-
-            // update the renderer size
-            renderer.setSize(sizes.width, sizes.height)
-            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-        })
-        ```
-    2. now run your project and try resizing and you'll have no issue
-### fullscreen
-- to have your project on fullscreen when you double click follow these steps
-    1. we will use an event listener on window to detect when the user double click and we will add a condition to check if it's on full size or not if true we'll exit the full size else we'll fullsize the screen
+### geomertries
+- in the previous lessons we used BoxGeometry to create a simble cube but do you know how this cube was made? every cube is made of faces and each face is made of three vertices and I'll teach you how to create a geometry from scratch follow these stips
+    1. we already know that each geometry is made of faces and each face is made of three vertices then how could we create these vertices? first we will create a float32array which is a type of arrayes that stores only floats and we will pass to it 9 values 3 for each veticy and we'll create three vertices to make one face
         ```js
-        window.addEventListener('dblclick', () => {
-            if (!document.fullscreenElement) {
-                canvas.requestFullscreen()
-            }
-            else {
-                document.exitFullscreen()
-            }
-        })
-        ```
-    2. now run your project and you should be able to enter and exit fullscreen with double click and with this our lesson ends
+        // create the array
+        const positionsArray = new Float32Array([
+            0,0,0,
+            0,1,0
+            1,0,0
+        ])
 
+        ```
+    2. now we'll create a position attribute that will be passed to our geometry as an attribute and it's called BufferAtribute and it takes two arguments: our array and how many points makes a face which is usually 3
+        ```js
+        const positionAttribute = new THREE.BufferAttribute(positionArray, 3)
+        ``` 
+        now we'll create our geometry and pass to it its attribute
+        ```js
+        const meshGeometry = new THREE.BufferGeometry()
+        meshGeometry.setAttribute('position', positionAttribute)
+        ```
+        pass your geometry to your mesh and run the project now let's try to create more of this faces first we will create 50 faces so create a constant called faces and give it the value 50, now create an array constant and assign each value to a random value and then create a bufferAttribute and a mesh geometry 
+        ```js
+        const meshGeometry = new THREE.BufferGeometry()
+        const faces = 50
+        const positions = faces * 3 * 3
+        const positionsArray = new Float32Array(positions) // a face contains 3 vertices and a verticy needs 3 positions
+        for(let i = 0; i < positions; i++){
+            positionsArray[i] = Math.random() - 0.5
+        }
+        const positionAttribute = new THREE.BufferAttribute(positionsArray, 3)
+        meshGeometry.setAttribute('position', positionAttribute)
+        const mesh = new THREE.Mesh(meshGeometry, new THREE.MeshBasicMaterial({ color: 0xff0000, wireframe: true}))
+        scene.add(mesh)
+        ```
+        and with this our lesson ends .

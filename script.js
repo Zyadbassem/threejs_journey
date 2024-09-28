@@ -20,13 +20,17 @@ const canvas = document.querySelector('canvas.webgl')
 // Scene
 const scene = new THREE.Scene()
 
-// groub
-
-
-const mesh = new THREE.Mesh(
-    new THREE.BoxGeometry(1, 1, 1),
-    new THREE.MeshBasicMaterial({ color: 0xff0000 })
-)
+// mesh
+const meshGeometry = new THREE.BufferGeometry()
+const faces = 50
+const positions = faces * 3 * 3
+const positionsArray = new Float32Array(positions) // a face contains 3 vertices and a verticy needs 3 positions
+for(let i = 0; i < positions; i++){
+    positionsArray[i] = Math.random() - 0.5
+}
+const positionAttribute = new THREE.BufferAttribute(positionsArray, 3)
+meshGeometry.setAttribute('position', positionAttribute)
+const mesh = new THREE.Mesh(meshGeometry, new THREE.MeshBasicMaterial({ color: 0xff0000, wireframe: true}))
 scene.add(mesh)
 
 //Sizes
