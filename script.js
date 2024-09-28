@@ -35,6 +35,29 @@ const sizes = {
     height: window.innerHeight,
 }
 
+window.addEventListener('resize', () => {
+    // update sizes
+    sizes.width = window.innerWidth
+    sizes.height = window.innerHeight
+
+    //update camera aspect ratio
+    camera.aspect = sizes.width / sizes.height
+    camera.updateProjectionMatrix()
+
+    // update the renderer size
+    renderer.setSize(sizes.width, sizes.height)
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+})
+
+window.addEventListener('dblclick', () => {
+    if (!document.fullscreenElement) {
+        canvas.requestFullscreen()
+    }
+    else {
+        document.exitFullscreen()
+    }
+})
+
 //axes 
 
 // Camera
