@@ -1,6 +1,6 @@
 # Three.js journey
 hey there my name is zyad and this is my three.js learning journey i'm using the three.js documentaion and three.js journey course by Bruno smith as a reference
-# fourth lesson
+# seventh lesson
 - here is what we will do in this lesson
 
     - learn about geometries and vertices and faces
