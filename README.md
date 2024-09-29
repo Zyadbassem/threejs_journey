@@ -89,3 +89,4 @@ and your js file should have a cube and orbietcontrols
         mesh.material.color.set(cubeController.color)
     })
     ```
+    now you'll notice it's much easier to change the color cause you're getting the right color and with this we finished our lesson
