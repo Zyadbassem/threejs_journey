@@ -1,18 +1,18 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
+import GUI from 'lil-gui'
 
+const gui = new GUI()
 
+const cube = gui.addFolder("cube")
+    
 
-//cursor
-const cursor = {
-    xAxe: 0,
-    yAxe: 0
+const cubeController = {
+    faces: 1,
+    color: "#e63b7a"
 }
-window.addEventListener("mousemove", (e) => {
-    cursor.xAxe = 2 *(e.clientX / sizes.width - 0.5)
-    cursor.yAxe = -2 *(e.clientY / sizes.height - 0.5)
-    console.log(`${cursor.yAxe}y, ${cursor.xAxe}x`)
-})
+//cursor
+
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
@@ -21,17 +21,51 @@ const canvas = document.querySelector('canvas.webgl')
 const scene = new THREE.Scene()
 
 // mesh
-const meshGeometry = new THREE.BufferGeometry()
-const faces = 50
-const positions = faces * 3 * 3
-const positionsArray = new Float32Array(positions) // a face contains 3 vertices and a verticy needs 3 positions
-for(let i = 0; i < positions; i++){
-    positionsArray[i] = Math.random() - 0.5
-}
-const positionAttribute = new THREE.BufferAttribute(positionsArray, 3)
-meshGeometry.setAttribute('position', positionAttribute)
-const mesh = new THREE.Mesh(meshGeometry, new THREE.MeshBasicMaterial({ color: 0xff0000, wireframe: true}))
+const mesh = new THREE.Mesh(
+    new THREE.BoxGeometry(1, 1, 1),
+    new THREE.MeshBasicMaterial({ color: cubeController.color, wireframe: true })
+)
+
+cube.addColor(cubeController, 'color')
+.onChange(() => {
+    mesh.material.color.set(cubeController.color)
+})
+cube.add(cubeController, 'faces')
+.min(1)
+.max(10)
+.step(1)
+.onFinishChange(() => {
+    mesh.geometry.dispose()
+    mesh.geometry = new THREE.BoxGeometry(
+        1,1,1,
+        cubeController.faces,
+        cubeController.faces,
+        cubeController.faces,
+    )
+})
+
+
+cube.add(mesh.position, 'y')
+.min(-3)
+.max(3)
+.step(0.01)
+.name('position y')
+
+cube.add(mesh, 'visible')
+
+cube.add(mesh.scale, 'x')
+.min(1)
+.max(3)
+.step(0.01)
+.name('scale x')
+
+cube.add(mesh.rotation, 'z')
+.min(0)
+.max(3)
+.step(0.01)
+.name('rotate z')
 scene.add(mesh)
+
 
 //Sizes
 const sizes = {

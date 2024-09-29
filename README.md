@@ -3,7 +3,7 @@ hey there my name is zyad and this is my three.js learning journey i'm using the
 # seventh lesson
 - here is what we will do in this lesson
 
-    - learn about geometries and vertices and faces
+    - learn about gui and debugging
 ## setting up 
 your directory structure should be looking like this
 ```html
@@ -14,41 +14,79 @@ your directory structure should be looking like this
         package.json
         script.js
 ```
-and your js file should be as we left it in the last lesson
+and your js file should have a cube and orbietcontrols
 
-### geomertries
-- in the previous lessons we used BoxGeometry to create a simble cube but do you know how this cube was made? every cube is made of faces and each face is made of three vertices and I'll teach you how to create a geometry from scratch follow these stips
-    1. we already know that each geometry is made of faces and each face is made of three vertices then how could we create these vertices? first we will create a float32array which is a type of arrayes that stores only floats and we will pass to it 9 values 3 for each veticy and we'll create three vertices to make one face
-        ```js
-        // create the array
-        const positionsArray = new Float32Array([
-            0,0,0,
-            0,1,0
-            1,0,0
-        ])
-
-        ```
-    2. now we'll create a position attribute that will be passed to our geometry as an attribute and it's called BufferAtribute and it takes two arguments: our array and how many points makes a face which is usually 3
-        ```js
-        const positionAttribute = new THREE.BufferAttribute(positionArray, 3)
-        ``` 
-        now we'll create our geometry and pass to it its attribute
-        ```js
-        const meshGeometry = new THREE.BufferGeometry()
-        meshGeometry.setAttribute('position', positionAttribute)
-        ```
-        pass your geometry to your mesh and run the project now let's try to create more of this faces first we will create 50 faces so create a constant called faces and give it the value 50, now create an array constant and assign each value to a random value and then create a bufferAttribute and a mesh geometry 
-        ```js
-        const meshGeometry = new THREE.BufferGeometry()
-        const faces = 50
-        const positions = faces * 3 * 3
-        const positionsArray = new Float32Array(positions) // a face contains 3 vertices and a verticy needs 3 positions
-        for(let i = 0; i < positions; i++){
-            positionsArray[i] = Math.random() - 0.5
-        }
-        const positionAttribute = new THREE.BufferAttribute(positionsArray, 3)
-        meshGeometry.setAttribute('position', positionAttribute)
-        const mesh = new THREE.Mesh(meshGeometry, new THREE.MeshBasicMaterial({ color: 0xff0000, wireframe: true}))
-        scene.add(mesh)
-        ```
-        and with this our lesson ends .
+### gui
+- GUI allows you to edit your camera, mesh with a graphics interface, there are many guis you can use but in this lesson we're gonna use lil-gui to download it open your terminal and paste this `npm install lil-gui` now we'll import it to our js file and create a new constant and assign it to new gui and we will add our mesh position and 'y' as an arguments to add method
+    ```js
+    import GUI from 'lil-gui'
+    const gui = new GUI()
+    // After creating the mesh
+    gui.add(mesh.position, 'y')
+    .min(-3)
+    .max(3)
+    .step(0.01)
+    ```
+    you'll notice that at the top right corner you can edit the y position of your object and that's just the begining we'll add much more things we can edit together but first not to make everything look messy I'll teach you how to create a folder we will create a new constant and assign it to gui.assfolder(name) name is a string whatever you want to name your folder
+    ```js
+    const cube = gui.addFolder("cube")
+    //after creating our mesh 
+    cube.add(mesh.position, 'y')
+    .min(-3)
+    .max(3)
+    .step(0.01)
+    .rename('position y')
+    ```
+    you'll notice in your browser it's more organized so when we add more meshs and maybe a camera it won't be messy, now let's add more things to edit, we'll add a checkbox that controls the visiblty of our cube and one for x scale and maybe one for rotation aswell
+    ```js 
+    cube.add(mesh, 'visible')
+    cube.add(mesh.scale, 'x')
+    .min(1)
+    .max(3)
+    .step(0.01)
+    .rename('scale x')
+    cube.add(mesh.rotation, 'z')
+    .min(1)
+    .max(3)
+    .step(0.01)
+    .rename('rotate z')
+    ```
+    now in the last lesson we talked about faces and the points that creates a face so how could we increase our faces on each Axe of the cube first we can't access it directly as we did with the previous properties so we will create an embty object and give it a property called faces and assign it to 0 and we will add it to the cube like we did before except that we'll give it onFinishChange property that will take a function in that function we'll elapse the previous geometry and add a new one with the value of the faces property
+    ```js
+    const cubeController = {
+        faces: 1
+    }
+    cube.add(cubeController, 'faces')
+    .min(1)
+    .max(10)
+    .step(1)
+    .onFinishChange(() => {
+        mesh.geometry.dispose()
+        mesh.geometry = new THREE.BoxGeometry(
+            1,1,1,
+            cubeController.faces,
+            cubeController.faces,
+            cubeController.faces,
+        )
+    })
+    ```
+    see? that wasn't so hard now let's try to edit the color the same way but small change instead of add we're gonna use addColor
+    ```js
+    cube.addColor(mesh.material, 'color')
+    ```
+    you'll notice that when you change the color and then want this color to apply to your cube so you get the color code and paste it in material.color and refresh the page that you don't get the same color to fix this issue we'll use our cube controller we used earilier we'll give it a proberty called color and we'll use it when we're creating the material and then we'll add it the same way we added the faces to our cube folder 
+    ```js
+    const cubeController = {
+    faces: 1,
+    color: "#e63b7a"
+    }
+    const mesh = new THREE.Mesh(
+    new THREE.BoxGeometry(1, 1, 1),
+    new THREE.MeshBasicMaterial({ color: cubeController.color, wireframe: true })
+    )
+    cube.addColor(cubeController, 'color')
+    .onChange(() => {
+        mesh.material.color.set(cubeController.color)
+    })
+    ```
+    now you'll notice it's much easier to change the color cause you're getting the right color and with this we finished our lesson
