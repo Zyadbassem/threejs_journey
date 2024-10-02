@@ -5,6 +5,7 @@ import GUI from "lil-gui";
 // Texures
 const image = new Image();
 const texture = new THREE.Texture(image);
+texture.colorSpace = THREE.SRGBColorSpace;
 image.onload = () => {
   texture.needsUpdate = true;
 };
@@ -16,7 +17,7 @@ const canvas = document.querySelector("canvas.webgl");
 // Scene
 const scene = new THREE.Scene();
 
-// mesh and it's gui
+// mesh
 const mesh = new THREE.Mesh(
   new THREE.BoxGeometry(1, 1, 1),
   new THREE.MeshBasicMaterial({ map: texture })
@@ -42,14 +43,6 @@ window.addEventListener("resize", () => {
   // update the renderer size
   renderer.setSize(sizes.width, sizes.height);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-});
-
-window.addEventListener("dblclick", () => {
-  if (!document.fullscreenElement) {
-    canvas.requestFullscreen();
-  } else {
-    document.exitFullscreen();
-  }
 });
 
 //axes
