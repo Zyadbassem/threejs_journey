@@ -3,14 +3,10 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import GUI from "lil-gui";
 
 // Texures
-const image = new Image();
-const texture = new THREE.Texture(image);
+const loadingManager = new THREE.LoadingManager();
+const textureLoader = new THREE.TextureLoader(loadingManager);
+const texture = textureLoader.load("color.jpg");
 texture.colorSpace = THREE.SRGBColorSpace;
-image.onload = () => {
-  texture.needsUpdate = true;
-};
-image.src = "color.jpg";
-
 // Canvas
 const canvas = document.querySelector("canvas.webgl");
 
@@ -54,7 +50,7 @@ const camera = new THREE.PerspectiveCamera(
   0.1,
   1000
 );
-camera.position.z = 3;
+camera.position.z = 2;
 const controls = new OrbitControls(camera, canvas);
 controls.enableDamping = true;
 scene.add(camera);

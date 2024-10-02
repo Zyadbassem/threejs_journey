@@ -34,7 +34,7 @@ this lesson is gonna be kinda long so let's start what's textures? textures is s
   image.onload = () => {
     texure.needsUpdate = true;
   };
-  image.src = "door.jpg";
+  image.src = "color.jpg";
   // where you create your mesh
   const material = new THREE.MeshBasicMaterial({ map: texture });
   ```
@@ -43,9 +43,21 @@ this lesson is gonna be kinda long so let's start what's textures? textures is s
 
 - easy way
   we'll use the texture loader which comes with threejs and it'll only take us three lines
+
   ```js
   const textureLoader = new THREE.TextureLoader();
-  const texture = textureLoader.load("door.jpg");
+  const texture = textureLoader.load("color.jpg");
+  texture.colorSpace = THREE.SRGBColorSpace;
   //don't forget to add it to your mesh
   ```
+
   and voila just like that your image is converted to texture successfully
+
+- production way
+  we'll use loadindManager cause it'll manage if we have a lot of textures maybe models or static files we want to load this will make them load better and in a more organized way
+  ```js
+  const loadingManager = new THREE.LoadingManager();
+  const texureLoader = new THREE.TextureLoader(loadingManager);
+  const texture = textureLoader.load("color.jpg");
+  texture.colorSpace = THREE.SRGBColorSpace;
+  ```
