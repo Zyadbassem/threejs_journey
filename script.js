@@ -11,6 +11,8 @@ texture.repeat.x = 2;
 texture.repeat.y = 3;
 texture.wrapS = THREE.RepeatWrapping;
 texture.wrapT = THREE.RepeatWrapping;
+texture.offset.x = 0.5;
+texture.offset.y = 0.5;
 // Canvas
 const canvas = document.querySelector("canvas.webgl");
 

@@ -88,3 +88,12 @@ you can transform the textures in many way we'll talk about them in this section
   ```
 
   now you'll notice that it's repeating successfully and you can also mirror it by using `THREE.MirroredRepeatWrapping`
+
+- Offset
+
+  you can also change the offset of a texture by using the offset property like the way we changed the repeat
+
+  ```js
+  texture.offset.x = 0.5;
+  texture.offset.y = 0.5;
+  ```
