@@ -7,12 +7,15 @@ const loadingManager = new THREE.LoadingManager();
 const textureLoader = new THREE.TextureLoader(loadingManager);
 const texture = textureLoader.load("color.jpg");
 texture.colorSpace = THREE.SRGBColorSpace;
-texture.repeat.x = 2;
-texture.repeat.y = 3;
-texture.wrapS = THREE.RepeatWrapping;
-texture.wrapT = THREE.RepeatWrapping;
-texture.offset.x = 0.5;
-texture.offset.y = 0.5;
+// texture.repeat.x = 2;
+// texture.repeat.y = 3;
+// texture.wrapS = THREE.RepeatWrapping;
+// texture.wrapT = THREE.RepeatWrapping;
+// texture.offset.x = 0.5;
+// texture.offset.y = 0.5;
+texture.rotation = Math.PI * 0.25;
+texture.center.x = 0.5;
+texture.center.y = 0.5;
 // Canvas
 const canvas = document.querySelector("canvas.webgl");
 
