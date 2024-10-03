@@ -112,3 +112,9 @@ you can transform the textures in many way we'll talk about them in this section
   texture.center.x = 0.5;
   texture.center.y = 0.5;
   ```
+
+- Filtering and Mipmapping
+  if you look at your cube with an angle where the top face is nearly visible you will notice that it's very blurry to fix this issue we will assign the minFilter property of the texture to THREE.NearestFilter
+  ```js
+  texture.minFilter = THREE.NearestFilter;
+  ```

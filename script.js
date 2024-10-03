@@ -13,9 +13,10 @@ texture.colorSpace = THREE.SRGBColorSpace;
 // texture.wrapT = THREE.RepeatWrapping;
 // texture.offset.x = 0.5;
 // texture.offset.y = 0.5;
-texture.rotation = Math.PI * 0.25;
-texture.center.x = 0.5;
-texture.center.y = 0.5;
+// texture.rotation = Math.PI * 0.25;
+// texture.center.x = 0.5;
+// texture.center.y = 0.5;
+texture.minFilter = THREE.NearestFilter;
 // Canvas
 const canvas = document.querySelector("canvas.webgl");
 
