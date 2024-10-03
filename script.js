@@ -7,6 +7,10 @@ const loadingManager = new THREE.LoadingManager();
 const textureLoader = new THREE.TextureLoader(loadingManager);
 const texture = textureLoader.load("color.jpg");
 texture.colorSpace = THREE.SRGBColorSpace;
+texture.repeat.x = 2;
+texture.repeat.y = 3;
+texture.wrapS = THREE.RepeatWrapping;
+texture.wrapT = THREE.RepeatWrapping;
 // Canvas
 const canvas = document.querySelector("canvas.webgl");
 

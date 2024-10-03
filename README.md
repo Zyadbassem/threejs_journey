@@ -42,6 +42,7 @@ this lesson is gonna be kinda long so let's start what's textures? textures is s
   you'll notice that the red color we were always seeing is no longer here and we have what looks like a door image covering our mesh now let's learn the easy way
 
 - easy way
+
   we'll use the texture loader which comes with threejs and it'll only take us three lines
 
   ```js
@@ -54,10 +55,36 @@ this lesson is gonna be kinda long so let's start what's textures? textures is s
   and voila just like that your image is converted to texture successfully
 
 - production way
+
   we'll use loadindManager cause it'll manage if we have a lot of textures maybe models or static files we want to load this will make them load better and in a more organized way
+
   ```js
   const loadingManager = new THREE.LoadingManager();
   const texureLoader = new THREE.TextureLoader(loadingManager);
   const texture = textureLoader.load("color.jpg");
   texture.colorSpace = THREE.SRGBColorSpace;
   ```
+
+  and with this we finished all three way of loading images and converting them to textures
+
+### Transforming the textures
+
+you can transform the textures in many way we'll talk about them in this section
+
+- repeate
+
+  you can repeate the textures in X or Y by controling the repeate object of the color texture which is a vector 2 object
+
+  ```js
+  texture.repeat.x = 2;
+  texture.repeat.y = 3;
+  ```
+
+  you'll notice that the textures is not repeating and that's because you have to update wrapS and wrapT for x and y
+
+  ```js
+  texture.wrapS = THREE.RepeatWrapping;
+  texture.wrapT = THREE.RepeatWrapping;
+  ```
+
+  now you'll notice that it's repeating successfully and you can also mirror it by using `THREE.MirroredRepeatWrapping`
