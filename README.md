@@ -97,3 +97,18 @@ you can transform the textures in many way we'll talk about them in this section
   texture.offset.x = 0.5;
   texture.offset.y = 0.5;
   ```
+
+- Rotation
+
+  you can also change the rotation of a texture by using the rotation property
+
+  ```js
+  texture.rotation = Math.PI * 0.25;
+  ```
+
+  comment the repeat and offset and paste this two lines of code which will center your texture
+
+  ```js
+  texture.center.x = 0.5;
+  texture.center.y = 0.5;
+  ```
