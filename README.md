@@ -115,6 +115,18 @@ you can transform the textures in many way we'll talk about them in this section
 
 - Filtering and Mipmapping
   if you look at your cube with an angle where the top face is nearly visible you will notice that it's very blurry to fix this issue we will assign the minFilter property of the texture to THREE.NearestFilter
+
   ```js
   texture.minFilter = THREE.NearestFilter;
   ```
+
+  now you'll notice that the quality is much better
+
+- texure format
+
+  here I will tell you what's best for your texutre
+
+  - you should use .jpg images casue it's much smaller in size and we always need our texures to be small in size
+  - you can get your textures online there are many of them for free and you could find the exact one you need
+
+  and with this we finished our lesson
