@@ -116,3 +116,13 @@ and its just the same as color and map
 ```js
 material.wireframe = true;
 ```
+
+- opacity
+  and this is a new property we never talked about this property controls the opacity of the mesh but you first have to make it able to do this
+
+```js
+material.transparent = true;
+material.opacity = 0.3;
+```
+
+you will notice it's turning grey cause the background is black
