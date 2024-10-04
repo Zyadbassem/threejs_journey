@@ -146,3 +146,13 @@ material.side = THREE.DoubleSide;
 ### MeshNormalMaterial
 
 this material have a beautiful color you can see after applying it
+
+- flatShading
+
+flatShading is a new property availble for MeshNormalMaterial go ahead and try it
+
+```js
+material.flatShading = true;
+```
+
+you'll notice its not smooth as it was or whatever you call it
