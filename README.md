@@ -126,3 +126,11 @@ material.opacity = 0.3;
 ```
 
 you will notice it's turning grey cause the background is black
+
+- AlphaMap
+
+now we have our material transparent we can use alpha map
+
+```js
+material.alphaMap = alpha;
+```

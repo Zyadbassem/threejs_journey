@@ -30,7 +30,8 @@ const material = new THREE.MeshBasicMaterial();
 
 // material.color = new THREE.Color(0xff0000);
 material.transparent = true;
-material.opacity = 0.2;
+// material.opacity = 0.2;
+material.alphaMap = alpha;
 
 const sphere = new THREE.Mesh(new THREE.SphereGeometry(), material);
 sphere.position.setX(-2);
