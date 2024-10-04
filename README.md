@@ -62,3 +62,25 @@ const loob = () => {
 
 loob();
 ```
+
+now let's load some textures i provided you with a static folder that contain all textures we need
+
+```js
+const textureManager = new THREE.LoadingManager();
+const textureLoader = new THREE.TextureLoader(textureManager);
+
+const alpha = textureLoader.load("static/textures/door/alpha.jpg");
+const ambientOcclusion = textureLoader.load(
+  "static/textures/door/ambientOcclusion.jpg"
+);
+const color = textureLoader.load("static/textures/door/color.jpg");
+const height = textureLoader.load("static/textures/door/height.jpg");
+const metalness = textureLoader.load("static/textures/door/metalness.jpg");
+const normal = textureLoader.load("static/textures/door/normal.jpg");
+const roughness = textureLoader.load("static/textures/door/roughness.jpg");
+const matcaps = textureLoader.load("static/textures/matcaps/1.png");
+const gradients = textureLoader.load("static/textures/gradients/3.png");
+
+color.colorSpace = THREE.SRGBColorSpace;
+matcaps.colorSpace = THREE.SRGBColorSpace;
+```

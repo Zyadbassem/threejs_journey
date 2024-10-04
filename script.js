@@ -3,11 +3,30 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
 const canvas = document.querySelector("canvas.webgl");
 
+//Textures
+const textureManager = new THREE.LoadingManager();
+const textureLoader = new THREE.TextureLoader(textureManager);
+
+const alpha = textureLoader.load("static/textures/door/alpha.jpg");
+const ambientOcclusion = textureLoader.load(
+  "static/textures/door/ambientOcclusion.jpg"
+);
+const color = textureLoader.load("static/textures/door/color.jpg");
+const height = textureLoader.load("static/textures/door/height.jpg");
+const metalness = textureLoader.load("static/textures/door/metalness.jpg");
+const normal = textureLoader.load("static/textures/door/normal.jpg");
+const roughness = textureLoader.load("static/textures/door/roughness.jpg");
+const matcaps = textureLoader.load("static/textures/matcaps/1.png");
+const gradients = textureLoader.load("static/textures/gradients/3.png");
+
+color.colorSpace = THREE.SRGBColorSpace;
+matcaps.colorSpace = THREE.SRGBColorSpace;
+
 // Scene
 const scene = new THREE.Scene();
 
 // meshs
-const material = new THREE.MeshBasicMaterial();
+const material = new THREE.MeshBasicMaterial({ map: alpha });
 
 const sphere = new THREE.Mesh(new THREE.SphereGeometry(), material);
 sphere.position.setX(-2);
@@ -48,7 +67,7 @@ const camera = new THREE.PerspectiveCamera(
   1000
 );
 
-camera.position.z = 3;
+camera.position.z = 4;
 const controls = new OrbitControls(camera, canvas);
 controls.enableDamping = true;
 scene.add(camera);
