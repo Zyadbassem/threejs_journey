@@ -26,7 +26,10 @@ matcaps.colorSpace = THREE.SRGBColorSpace;
 const scene = new THREE.Scene();
 
 // meshs
-const material = new THREE.MeshBasicMaterial({ map: alpha });
+const material = new THREE.MeshBasicMaterial();
+
+material.map = color;
+material.color = new THREE.Color(0xff0000);
 
 const sphere = new THREE.Mesh(new THREE.SphereGeometry(), material);
 sphere.position.setX(-2);

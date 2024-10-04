@@ -100,3 +100,11 @@ material.color = new THREE.Color(0xff0000);
 ```
 
 this way you can change the material color and it's up to you to use this way or the previous one
+
+- map
+
+like color we can use this way to access the map property instead of the parameter way
+
+```js
+material.map = color;
+```
