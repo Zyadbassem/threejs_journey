@@ -84,3 +84,9 @@ const gradients = textureLoader.load("static/textures/gradients/3.png");
 color.colorSpace = THREE.SRGBColorSpace;
 matcaps.colorSpace = THREE.SRGBColorSpace;
 ```
+
+now let's talk about types of material and its properties
+
+### MeshBasicMaterial
+
+we have been using mesh basic material since the first lesson but we never talked about its properties so let's do this now
