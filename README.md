@@ -25,20 +25,40 @@ materials is what is covering each pixel of the mesh in this lesson we will lear
 
 ```js
 // meshs
-const sphere = new THREE.Mesh(
-  new THREE.SphereGeometry(),
-  new THREE.MeshBasicMaterial({ color: "red" })
-);
+const material = new THREE.MeshBasicMaterial();
+
+const sphere = new THREE.Mesh(new THREE.SphereGeometry(), material);
 sphere.position.setX(-2);
 
-const plane = new THREE.Mesh(
-  new THREE.PlaneGeometry(),
-  new THREE.MeshBasicMaterial({ color: "blue" })
-);
-
-const torus = new THREE.Mesh(
-  new THREE.TorusGeometry(),
-  new THREE.MeshBasicMaterial({ color: "green" })
-);
+const plane = new THREE.Mesh(new THREE.PlaneGeometry(), material);
+const torus = new THREE.Mesh(new THREE.TorusGeometry(), material);
 torus.position.setX(2.3);
+
+scene.add(sphere, plane, torus);
+```
+
+now go ahead and animate them so the rotate in our loob function
+
+```js
+const clock = new THREE.Clock();
+const loob = () => {
+  let elapsedTime = clock.getElapsedTime();
+
+  torus.rotation.y = elapsedTime * 0.1;
+  plane.rotation.y = elapsedTime * 0.1;
+  sphere.rotation.y = elapsedTime * 0.1;
+
+  torus.rotation.x = elapsedTime * -0.15;
+  plane.rotation.x = elapsedTime * -0.15;
+  sphere.rotation.x = elapsedTime * -0.15;
+
+  //camera
+
+  controls.update();
+  //render
+  renderer.render(scene, camera);
+  window.requestAnimationFrame(loob);
+};
+
+loob();
 ```

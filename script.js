@@ -7,26 +7,17 @@ const canvas = document.querySelector("canvas.webgl");
 const scene = new THREE.Scene();
 
 // meshs
-const sphere = new THREE.Mesh(
-  new THREE.SphereGeometry(),
-  new THREE.MeshBasicMaterial({ color: "red" })
-);
+const material = new THREE.MeshBasicMaterial();
+
+const sphere = new THREE.Mesh(new THREE.SphereGeometry(), material);
 sphere.position.setX(-2);
 
-const plane = new THREE.Mesh(
-  new THREE.PlaneGeometry(),
-  new THREE.MeshBasicMaterial({ color: "blue" })
-);
-
-const torus = new THREE.Mesh(
-  new THREE.TorusGeometry(),
-  new THREE.MeshBasicMaterial({ color: "green" })
-);
+const plane = new THREE.Mesh(new THREE.PlaneGeometry(), material);
+const torus = new THREE.Mesh(new THREE.TorusGeometry(), material);
 torus.position.setX(2.3);
 
-scene.add(sphere);
-scene.add(plane);
-scene.add(torus);
+scene.add(sphere, plane, torus);
+
 //Sizes
 const sizes = {
   width: window.innerWidth,
@@ -57,7 +48,7 @@ const camera = new THREE.PerspectiveCamera(
   1000
 );
 
-camera.position.z = 2;
+camera.position.z = 3;
 const controls = new OrbitControls(camera, canvas);
 controls.enableDamping = true;
 scene.add(camera);
@@ -69,12 +60,17 @@ const renderer = new THREE.WebGLRenderer({
 
 renderer.setSize(sizes.width, sizes.height);
 
-//const clock = new THREE.Clock
+const clock = new THREE.Clock();
 const loob = () => {
-  //let elapsedTime = clock.getElapsedTime()
+  let elapsedTime = clock.getElapsedTime();
 
-  //rotation
-  //mesh.rotation.y = elapsedTime
+  torus.rotation.y = elapsedTime * 0.1;
+  plane.rotation.y = elapsedTime * 0.1;
+  sphere.rotation.y = elapsedTime * 0.1;
+
+  torus.rotation.x = elapsedTime * -0.15;
+  plane.rotation.x = elapsedTime * -0.15;
+  sphere.rotation.x = elapsedTime * -0.15;
 
   //camera
 
