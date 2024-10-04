@@ -142,3 +142,7 @@ the side property decides which side of the material is visible by default it's 
 ```js
 material.side = THREE.DoubleSide;
 ```
+
+### MeshNormalMaterial
+
+this material have a beautiful color you can see after applying it

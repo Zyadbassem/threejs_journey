@@ -26,13 +26,13 @@ matcaps.colorSpace = THREE.SRGBColorSpace;
 const scene = new THREE.Scene();
 
 // meshs
-const material = new THREE.MeshBasicMaterial();
+const material = new THREE.MeshNormalMaterial();
 
 // material.color = new THREE.Color(0xff0000);
-material.transparent = true;
+//material.transparent = true;
 // material.opacity = 0.2;
 // material.alphaMap = alpha;
-material.side = THREE.DoubleSide;
+//material.side = THREE.DoubleSide;
 const sphere = new THREE.Mesh(new THREE.SphereGeometry(), material);
 sphere.position.setX(-2);
 
