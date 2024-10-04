@@ -30,6 +30,7 @@ const material = new THREE.MeshBasicMaterial();
 
 material.map = color;
 material.color = new THREE.Color(0xff0000);
+material.wireframe = true;
 
 const sphere = new THREE.Mesh(new THREE.SphereGeometry(), material);
 sphere.position.setX(-2);

@@ -108,3 +108,11 @@ like color we can use this way to access the map property instead of the paramet
 ```js
 material.map = color;
 ```
+
+- wireframe
+
+and its just the same as color and map
+
+```js
+material.wireframe = true;
+```
