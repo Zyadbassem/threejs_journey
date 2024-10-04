@@ -1,36 +1,32 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
-import GUI from "lil-gui";
 
-// Texures
-const loadingManager = new THREE.LoadingManager();
-const textureLoader = new THREE.TextureLoader(loadingManager);
-const texture = textureLoader.load("color.jpg");
-texture.colorSpace = THREE.SRGBColorSpace;
-// texture.repeat.x = 2;
-// texture.repeat.y = 3;
-// texture.wrapS = THREE.RepeatWrapping;
-// texture.wrapT = THREE.RepeatWrapping;
-// texture.offset.x = 0.5;
-// texture.offset.y = 0.5;
-// texture.rotation = Math.PI * 0.25;
-// texture.center.x = 0.5;
-// texture.center.y = 0.5;
-texture.minFilter = THREE.NearestFilter;
-// Canvas
 const canvas = document.querySelector("canvas.webgl");
 
 // Scene
 const scene = new THREE.Scene();
 
-// mesh
-const mesh = new THREE.Mesh(
-  new THREE.BoxGeometry(1, 1, 1),
-  new THREE.MeshBasicMaterial({ map: texture })
+// meshs
+const sphere = new THREE.Mesh(
+  new THREE.SphereGeometry(),
+  new THREE.MeshBasicMaterial({ color: "red" })
+);
+sphere.position.setX(-2);
+
+const plane = new THREE.Mesh(
+  new THREE.PlaneGeometry(),
+  new THREE.MeshBasicMaterial({ color: "blue" })
 );
 
-scene.add(mesh);
+const torus = new THREE.Mesh(
+  new THREE.TorusGeometry(),
+  new THREE.MeshBasicMaterial({ color: "green" })
+);
+torus.position.setX(2.3);
 
+scene.add(sphere);
+scene.add(plane);
+scene.add(torus);
 //Sizes
 const sizes = {
   width: window.innerWidth,
@@ -60,6 +56,7 @@ const camera = new THREE.PerspectiveCamera(
   0.1,
   1000
 );
+
 camera.position.z = 2;
 const controls = new OrbitControls(camera, canvas);
 controls.enableDamping = true;
