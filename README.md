@@ -134,3 +134,11 @@ now we have our material transparent we can use alpha map
 ```js
 material.alphaMap = alpha;
 ```
+
+- Side
+
+the side property decides which side of the material is visible by default it's the front side but you can change it
+
+```js
+material.side = THREE.DoubleSide;
+```
