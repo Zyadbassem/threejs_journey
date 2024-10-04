@@ -90,3 +90,13 @@ now let's talk about types of material and its properties
 ### MeshBasicMaterial
 
 we have been using mesh basic material since the first lesson but we never talked about its properties so let's do this now
+
+- Color
+
+we have been using the color property as a parameter but i will show u another way to access the color property
+
+```js
+material.color = new THREE.Color(0xff0000);
+```
+
+this way you can change the material color and it's up to you to use this way or the previous one
