@@ -285,3 +285,15 @@ rgbeLoader.load("static/textures/environmentMap/2k.hdr", (environmentMap) => {
 ```
 
 now play with the metalness and roughness and see what happens
+
+### more properties
+
+- aomap
+
+we will add our door texture and another property to handle the shadows
+
+```js
+material.map = color;
+material.aoMap = ambientOcclusion;
+material.aoMapIntensity = 1;
+```
