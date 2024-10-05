@@ -39,7 +39,12 @@ rgbeLoader.load("static/textures/environmentMap/2k.hdr", (environmentMap) => {
 gradients.minFilter = THREE.NearestFilter;
 gradients.magFilter = THREE.NearestFilter;
 gradients.generateMipmaps = false;
-const material = new THREE.MeshStandardMaterial();
+const material = new THREE.MeshPhysicalMaterial();
+material.clearcoat = 1;
+material.clearcoatRoughness = 0;
+
+gui.add(material, "clearcoat").min(0).max(1).step(0.0001);
+gui.add(material, "clearcoatRoughness").min(0).max(1).step(0.0001);
 material.roughness = 0.2;
 material.metalness = 0.7;
 material.map = color;

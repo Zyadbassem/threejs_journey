@@ -359,3 +359,24 @@ And finally, you can control the alpha using the alphaMap property
 material.transparent = true;
 material.alphaMap = alpha;
 ```
+
+### MeshPhysicalMaterial
+
+The MeshPhysicalMaterial is the same as the MeshStandardMaterial but with the support of additional effects such as clearcoat, sheen, iridescence, and transmission.
+
+```js
+const material = new THREE.MeshPhysicalMaterial();
+//leave other properties as it is
+```
+
+- Clearcoat
+
+The clearcoat will simulate a thin layer of varnish on top of the actual material
+
+```js
+material.clearcoat = 1;
+material.clearcoatRoughness = 0;
+
+gui.add(material, "clearcoat").min(0).max(1).step(0.0001);
+gui.add(material, "clearcoatRoughness").min(0).max(1).step(0.0001);
+```
