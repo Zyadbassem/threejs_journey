@@ -237,9 +237,10 @@ By default, you only get a two-part coloration (one for the shadow and one for t
 material.gradientMap = gradients;
 ```
 
-add this two lines of code to tell the gpu how to handle these 3 pixel images
+add this three lines of code to tell the gpu how to handle these 3 pixel images
 
 ```js
 gradients.minFilter = THREE.NearestFilter;
 gradients.magFilter = THREE.NearestFilter;
+gradients.generateMipmaps = false;
 ```
