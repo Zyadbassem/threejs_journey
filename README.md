@@ -346,3 +346,9 @@ The normalMap will fake the normal orientation and add details to the surface re
 ```js
 material.normalMap = normal;
 ```
+
+You can change the normal intensity with the normalScale property
+
+```js
+material.normalScale.set(0.5, 0.5);
+```
