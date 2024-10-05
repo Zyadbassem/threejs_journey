@@ -267,6 +267,21 @@ material.roughness = 0.65;
 you can add lil-gui as we learned before so you can see more clearly how roughness and metalness work
 
 ```js
-gui.add(material, "roughness").min(0).max(1).step(0.01);
-gui.add(material, "metalness").min(0).max(1).step(0.01);
+gui.add(material, "roughness").min(0).max(1).step(0.001);
+gui.add(material, "metalness").min(0).max(1).step(0.001);
 ```
+
+- add env map
+
+lets change the background and have a nature lights from an image to do this we will import RGBELoader which allows us to load our image and then we will use load func on it to change the background when the image loads
+
+```js
+const rgbeLoader = new RGBELoader();
+rgbeLoader.load("static/textures/environmentMap/2k.hdr", (environmentMap) => {
+  environmentMap.mapping = THREE.EquirectangularReflectionMapping;
+  scene.background = environmentMap;
+  scene.environment = environmentMap;
+});
+```
+
+now play with the metalness and roughness and see what happens

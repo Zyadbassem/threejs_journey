@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader.js";
 import GUI from "lil-gui";
 
 const gui = new GUI();
@@ -28,13 +29,21 @@ matcaps.colorSpace = THREE.SRGBColorSpace;
 // Scene
 const scene = new THREE.Scene();
 
+const rgbeLoader = new RGBELoader();
+rgbeLoader.load("static/textures/environmentMap/2k.hdr", (environmentMap) => {
+  environmentMap.mapping = THREE.EquirectangularReflectionMapping;
+  scene.background = environmentMap;
+  scene.environment = environmentMap;
+});
 // meshs
 gradients.minFilter = THREE.NearestFilter;
 gradients.magFilter = THREE.NearestFilter;
 gradients.generateMipmaps = false;
 const material = new THREE.MeshStandardMaterial();
-gui.add(material, "roughness").min(0).max(1).step(0.01);
-gui.add(material, "metalness").min(0).max(1).step(0.01);
+material.roughness = 0.2;
+material.metalness = 0.7;
+gui.add(material, "roughness").min(0).max(1).step(0.001);
+gui.add(material, "metalness").min(0).max(1).step(0.001);
 // material.gradientMap = gradients;
 //const ambientLight = new THREE.AmbientLight(0xffffff, 1);
 //scene.add(ambientLight);
