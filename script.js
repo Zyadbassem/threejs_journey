@@ -26,8 +26,7 @@ matcaps.colorSpace = THREE.SRGBColorSpace;
 const scene = new THREE.Scene();
 
 // meshs
-const material = new THREE.MeshMatcapMaterial();
-material.matcap = matcaps;
+const material = new THREE.MeshDepthMaterial();
 // material.color = new THREE.Color(0xff0000);
 //material.transparent = true;
 // material.opacity = 0.2;

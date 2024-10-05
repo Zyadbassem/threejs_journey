@@ -163,5 +163,13 @@ this material is so good cause of its performace and it uses a texture that look
 
 ```js
 const material = new THREE.MeshMatcapMaterial();
-material.matap = matcaps;
+material.matcap = matcaps;
+```
+
+### MeshDebthMaterial
+
+this material will color the mesh if the camera is near and uncolor it if the camera is far
+
+```js
+const material = new THREE.MeshDepthMaterial();
 ```
