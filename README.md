@@ -380,3 +380,17 @@ material.clearcoatRoughness = 0;
 gui.add(material, "clearcoat").min(0).max(1).step(0.0001);
 gui.add(material, "clearcoatRoughness").min(0).max(1).step(0.0001);
 ```
+
+- sheen
+
+The sheen will highlight the material when seen from a narrow angle.
+
+```js
+material.sheen = 1;
+material.sheenRoughness = 0.25;
+material.sheenColor.set(1, 1, 1);
+
+gui.add(material, "sheen").min(0).max(1).step(0.0001);
+gui.add(material, "sheenRoughness").min(0).max(1).step(0.0001);
+gui.addColor(material, "sheenColor");
+```
