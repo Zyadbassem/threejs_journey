@@ -173,3 +173,22 @@ this material will color the mesh if the camera is near and uncolor it if the ca
 ```js
 const material = new THREE.MeshDepthMaterial();
 ```
+
+### MeshLambertMaterial
+
+this material is one of the materials that needs a light to be visible so we will add a light to the scene
+
+```js
+const material = new THREE.MeshLambertMaterial();
+
+const ambientLight = new THREE.AmbientLight(0xffffff, 1);
+scene.add(ambientLight);
+
+const pointLight = new THREE.PointLight(0xffffff, 30);
+pointLight.position.setX(3);
+pointLight.position.setY(3);
+pointLight.position.setZ(3);
+scene.add(pointLight);
+```
+
+now you'll be able to see your meshs
