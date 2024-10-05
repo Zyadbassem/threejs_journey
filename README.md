@@ -220,3 +220,11 @@ you can control the reflection powerness and color with this new propaperties sh
 material.shininess = 100;
 material.specular = new THREE.Color(0x1188ff);
 ```
+
+### MeshToonMaterial
+
+MeshToonMaterial is similar to MeshLambertMaterial but in a cartoon way
+
+```js
+const material = new THREE.MeshToonMaterial();
+```
