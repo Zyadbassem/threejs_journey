@@ -30,6 +30,8 @@ const material = new THREE.MeshPhongMaterial();
 
 // const ambientLight = new THREE.AmbientLight(0xffffff, 1);
 // scene.add(ambientLight);
+material.shininess = 100;
+material.specular = new THREE.Color(0x1188ff);
 
 const pointLight = new THREE.PointLight(0xffffff, 30);
 pointLight.position.setX(3);

@@ -211,3 +211,12 @@ scene.add(pointLight);
 ```
 
 you will notice there is no lines
+
+- shininess
+
+you can control the reflection powerness and color with this new propaperties shininess and specular
+
+```js
+material.shininess = 100;
+material.specular = new THREE.Color(0x1188ff);
+```
