@@ -26,8 +26,10 @@ matcaps.colorSpace = THREE.SRGBColorSpace;
 const scene = new THREE.Scene();
 
 // meshs
+gradients.minFilter = THREE.NearestFilter;
+gradients.magFilter = THREE.NearestFilter;
 const material = new THREE.MeshLambertMaterial();
-
+material.gradientMap = gradients;
 const ambientLight = new THREE.AmbientLight(0xffffff, 1);
 scene.add(ambientLight);
 // material.shininess = 100;

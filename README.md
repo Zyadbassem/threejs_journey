@@ -228,3 +228,18 @@ MeshToonMaterial is similar to MeshLambertMaterial but in a cartoon way
 ```js
 const material = new THREE.MeshToonMaterial();
 ```
+
+- gradientMap
+
+By default, you only get a two-part coloration (one for the shadow and one for the light). To add more steps to the coloration, you can use the gradientTexture we loaded at the start of the lesson on the gradientMap property
+
+```js
+material.gradientMap = gradients;
+```
+
+add this two lines of code to tell the gpu how to handle these 3 pixel images
+
+```js
+gradients.minFilter = THREE.NearestFilter;
+gradients.magFilter = THREE.NearestFilter;
+```
