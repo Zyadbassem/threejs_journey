@@ -423,3 +423,22 @@ gui.add(material, "transmission").min(0).max(1).step(0.0001);
 gui.add(material, "ior").min(1).max(10).step(0.0001);
 gui.add(material, "thickness").min(0).max(1).step(0.0001);
 ```
+
+now paste this code so we can finish this lesson
+
+```js
+const material = new THREE.MeshPhysicalMaterial();
+material.metalness = 0;
+material.roughness = 0;
+// material.map = doorColorTexture
+// material.aoMap = doorAmbientOcclusionTexture
+// material.aoMapIntensity = 1
+// material.displacementMap = doorHeightTexture
+// material.displacementScale = 0.1
+// material.metalnessMap = doorMetalnessTexture
+// material.roughnessMap = doorRoughnessTexture
+// material.normalMap = doorNormalTexture
+// material.normalScale.set(0.5, 0.5)
+// material.transparent = true
+// material.alphaMap = doorAlphaTexture
+```
