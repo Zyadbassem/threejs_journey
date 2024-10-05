@@ -156,3 +156,12 @@ material.flatShading = true;
 ```
 
 you'll notice its not smooth as it was or whatever you call it
+
+### MeshMatcapMaterial
+
+this material is so good cause of its performace and it uses a texture that look like a sphere and to apply it u access the matcap property and assign a matcap texture to it
+
+```js
+const material = new THREE.MeshMatcapMaterial();
+material.matap = matcaps;
+```

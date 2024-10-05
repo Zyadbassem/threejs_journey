@@ -16,8 +16,8 @@ const height = textureLoader.load("static/textures/door/height.jpg");
 const metalness = textureLoader.load("static/textures/door/metalness.jpg");
 const normal = textureLoader.load("static/textures/door/normal.jpg");
 const roughness = textureLoader.load("static/textures/door/roughness.jpg");
-const matcaps = textureLoader.load("static/textures/matcaps/1.png");
-const gradients = textureLoader.load("static/textures/gradients/3.png");
+const matcaps = textureLoader.load("static/textures/matcaps/6.png");
+const gradients = textureLoader.load("static/textures/gradients/1.png");
 
 color.colorSpace = THREE.SRGBColorSpace;
 matcaps.colorSpace = THREE.SRGBColorSpace;
@@ -26,8 +26,8 @@ matcaps.colorSpace = THREE.SRGBColorSpace;
 const scene = new THREE.Scene();
 
 // meshs
-const material = new THREE.MeshNormalMaterial();
-material.flatShading = true;
+const material = new THREE.MeshMatcapMaterial();
+material.matcap = matcaps;
 // material.color = new THREE.Color(0xff0000);
 //material.transparent = true;
 // material.opacity = 0.2;
