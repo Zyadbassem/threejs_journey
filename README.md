@@ -297,3 +297,32 @@ material.map = color;
 material.aoMap = ambientOcclusion;
 material.aoMapIntensity = 1;
 ```
+
+- displacmentmap
+
+this one will move the vertices to create true relief
+
+```js
+material.displacementMap = height;
+```
+
+it should look terrible. That is due to the lack of vertices on our geometries and the displacement being way too strong.
+Add more subdivisions to the geometries
+
+```js
+new THREE.SphereGeometry(0.5, 64, 64),
+
+// ...
+
+new THREE.PlaneGeometry(1, 1, 100, 100),
+
+// ...
+
+new THREE.TorusGeometry(0.3, 0.2, 64, 128),
+```
+
+Elevations look more precise, but way too strong. We can control that with the displacementScale property
+
+```js
+material.displacementScale = 0.1;
+```

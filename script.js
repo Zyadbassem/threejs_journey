@@ -45,6 +45,8 @@ material.metalness = 0.7;
 material.map = color;
 material.aoMap = ambientOcclusion;
 material.aoMapIntensity = 1;
+material.displacementMap = height;
+material.displacementScale = 0.1;
 gui.add(material, "roughness").min(0).max(1).step(0.001);
 gui.add(material, "metalness").min(0).max(1).step(0.001);
 // material.gradientMap = gradients;
@@ -63,11 +65,14 @@ scene.add(pointLight);
 // material.opacity = 0.2;
 // material.alphaMap = alpha;
 //material.side = THREE.DoubleSide;
-const sphere = new THREE.Mesh(new THREE.SphereGeometry(), material);
+const sphere = new THREE.Mesh(new THREE.SphereGeometry(0.5, 64, 64), material);
 sphere.position.setX(-2);
 
-const plane = new THREE.Mesh(new THREE.PlaneGeometry(), material);
-const torus = new THREE.Mesh(new THREE.TorusGeometry(), material);
+const plane = new THREE.Mesh(new THREE.PlaneGeometry(1, 1, 100, 100), material);
+const torus = new THREE.Mesh(
+  new THREE.TorusGeometry(0.3, 0.2, 64, 128),
+  material
+);
 torus.position.setX(2.3);
 
 scene.add(sphere, plane, torus);
