@@ -47,6 +47,8 @@ material.aoMap = ambientOcclusion;
 material.aoMapIntensity = 1;
 material.displacementMap = height;
 material.displacementScale = 0.1;
+material.metalnessMap = metalness;
+material.roughnessMap = roughness;
 gui.add(material, "roughness").min(0).max(1).step(0.001);
 gui.add(material, "metalness").min(0).max(1).step(0.001);
 // material.gradientMap = gradients;

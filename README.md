@@ -326,3 +326,10 @@ Elevations look more precise, but way too strong. We can control that with the d
 ```js
 material.displacementScale = 0.1;
 ```
+
+now you'll notice that the door got some details but let's add more by adding the roughness and metalness texture
+
+```js
+material.metalnessMap = metalness;
+material.roughnessMap = roughness;
+```
