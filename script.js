@@ -30,6 +30,8 @@ gradients.minFilter = THREE.NearestFilter;
 gradients.magFilter = THREE.NearestFilter;
 gradients.generateMipmaps = false;
 const material = new THREE.MeshStandardMaterial();
+material.metalness = 0.45;
+material.roughness = 0.65;
 // material.gradientMap = gradients;
 const ambientLight = new THREE.AmbientLight(0xffffff, 1);
 scene.add(ambientLight);

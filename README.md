@@ -252,3 +252,12 @@ this material is the most used material it's more realistic and uses complex par
 ```js
 const material = new THREE.MeshStandardMaterial();
 ```
+
+- roughness and metalness
+
+you can control the metalness and roughness directly
+
+```js
+material.metalness = 0.45;
+material.roughness = 0.65;
+```
