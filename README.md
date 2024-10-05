@@ -344,5 +344,5 @@ material.roughness = 1;
 The normalMap will fake the normal orientation and add details to the surface regardless of the subdivision:
 
 ```js
-material.normalMap = doorNormalTexture;
+material.normalMap = normal;
 ```

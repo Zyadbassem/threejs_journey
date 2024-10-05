@@ -51,7 +51,7 @@ material.metalnessMap = metalness;
 material.roughnessMap = roughness;
 material.metalness = 1;
 material.roughness = 1;
-material.normalMap = doorNormalTexture;
+material.normalMap = normal;
 gui.add(material, "roughness").min(0).max(1).step(0.001);
 gui.add(material, "metalness").min(0).max(1).step(0.001);
 // material.gradientMap = gradients;
