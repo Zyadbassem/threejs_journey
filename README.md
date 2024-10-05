@@ -191,4 +191,23 @@ pointLight.position.setZ(3);
 scene.add(pointLight);
 ```
 
-now you'll be able to see your meshs
+now you'll be able to see your meshs but you will notice strange lines if you get too close to your meshs
+
+### MeshPhongMaterial
+
+just like MeshLambertMaterial but here we got rid of the strange lines we were seeing
+
+```js
+const material = new THREE.MeshPhongMaterial();
+
+const ambientLight = new THREE.AmbientLight(0xffffff, 1);
+scene.add(ambientLight);
+
+const pointLight = new THREE.PointLight(0xffffff, 30);
+pointLight.position.setX(3);
+pointLight.position.setY(3);
+pointLight.position.setZ(3);
+scene.add(pointLight);
+```
+
+you will notice there is no lines
