@@ -261,3 +261,12 @@ you can control the metalness and roughness directly
 material.metalness = 0.45;
 material.roughness = 0.65;
 ```
+
+- add gui
+
+you can add lil-gui as we learned before so you can see more clearly how roughness and metalness work
+
+```js
+gui.add(material, "roughness").min(0).max(1).step(0.01);
+gui.add(material, "metalness").min(0).max(1).step(0.01);
+```

@@ -1,5 +1,8 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+import GUI from "lil-gui";
+
+const gui = new GUI();
 
 const canvas = document.querySelector("canvas.webgl");
 
@@ -30,11 +33,11 @@ gradients.minFilter = THREE.NearestFilter;
 gradients.magFilter = THREE.NearestFilter;
 gradients.generateMipmaps = false;
 const material = new THREE.MeshStandardMaterial();
-material.metalness = 0.45;
-material.roughness = 0.65;
+gui.add(material, "roughness").min(0).max(1).step(0.01);
+gui.add(material, "metalness").min(0).max(1).step(0.01);
 // material.gradientMap = gradients;
-const ambientLight = new THREE.AmbientLight(0xffffff, 1);
-scene.add(ambientLight);
+//const ambientLight = new THREE.AmbientLight(0xffffff, 1);
+//scene.add(ambientLight);
 // material.shininess = 100;
 // material.specular = new THREE.Color(0x1188ff);
 
