@@ -333,3 +333,10 @@ now you'll notice that the door got some details but let's add more by adding th
 material.metalnessMap = metalness;
 material.roughnessMap = roughness;
 ```
+
+now change metalness and roughness to 1 so it looks better
+
+```js
+material.metalness = 1;
+material.roughness = 1;
+```
