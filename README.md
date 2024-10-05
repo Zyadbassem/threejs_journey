@@ -352,3 +352,10 @@ You can change the normal intensity with the normalScale property
 ```js
 material.normalScale.set(0.5, 0.5);
 ```
+
+And finally, you can control the alpha using the alphaMap property
+
+```js
+material.transparent = true;
+material.alphaMap = alpha;
+```

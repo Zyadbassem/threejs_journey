@@ -53,6 +53,9 @@ material.metalness = 1;
 material.roughness = 1;
 material.normalMap = normal;
 material.normalScale.set(0.5, 0.5);
+material.transparent = true;
+material.alphaMap = alpha;
+
 gui.add(material, "roughness").min(0).max(1).step(0.001);
 gui.add(material, "metalness").min(0).max(1).step(0.001);
 // material.gradientMap = gradients;
