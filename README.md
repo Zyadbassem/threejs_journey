@@ -244,3 +244,11 @@ gradients.minFilter = THREE.NearestFilter;
 gradients.magFilter = THREE.NearestFilter;
 gradients.generateMipmaps = false;
 ```
+
+### MeshStandardMaterial
+
+this material is the most used material it's more realistic and uses complex parameter like roughness and metalness
+
+```js
+const material = new THREE.MeshStandardMaterial();
+```
