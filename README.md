@@ -394,3 +394,18 @@ gui.add(material, "sheen").min(0).max(1).step(0.0001);
 gui.add(material, "sheenRoughness").min(0).max(1).step(0.0001);
 gui.addColor(material, "sheenColor");
 ```
+
+- Iridescence
+
+The iridescence is an effect where we can see color artifacts like a fuel puddle, soap bubbles
+
+```js
+material.iridescence = 1;
+material.iridescenceIOR = 1;
+material.iridescenceThicknessRange = [100, 800];
+
+gui.add(material, "iridescence").min(0).max(1).step(0.0001);
+gui.add(material, "iridescenceIOR").min(1).max(2.333).step(0.0001);
+gui.add(material.iridescenceThicknessRange, "0").min(1).max(1000).step(1);
+gui.add(material.iridescenceThicknessRange, "1").min(1).max(1000).step(1);
+```
