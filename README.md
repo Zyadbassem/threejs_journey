@@ -29,4 +29,29 @@ import { FontLoader } from "three/examples/jsm/loaders/FontLoader.js";
 //after the scene
 
 const fontLoader = new FontLoader();
+fontLoader.load("static/helvetiker_regular.typeface.json", (font) => {
+  console.log(font);
+});
 ```
+
+open your console and you'll notice that your font is logged now we need to create a mesh to add it to our scene to create that mesh we need a special geometry that will make the shape of our text copy and paste this code in our callback function and we need to import the TextGeometry first
+
+```js
+import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry.js";
+const textGeometry = new TextGeometry("Hello Three.js", {
+  font: font,
+  size: 0.5,
+  depth: 0.2,
+  curveSegments: 12,
+  bevelEnabled: true,
+  bevelThickness: 0.03,
+  bevelSize: 0.02,
+  bevelOffset: 0,
+  bevelSegments: 5,
+});
+const textMaterial = new THREE.MeshBasicMaterial();
+const text = new THREE.Mesh(textGeometry, textMaterial);
+scene.add(text);
+```
+
+refresh the page and you'll notice that you have a 3d text great right but you can also notice that it's not centered so how could we center our text first you should know that every geometry have somthing like an invesible box surronding it so we need to access this box and move our geometry so it will be centered
