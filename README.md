@@ -49,7 +49,7 @@ const textGeometry = new TextGeometry("Hello Three.js", {
   bevelOffset: 0,
   bevelSegments: 5,
 });
-const textMaterial = new THREE.MeshBasicMaterial();
+const textMaterial = new THREE.MeshMatcapMaterial({ matcap: matcaps });
 const text = new THREE.Mesh(textGeometry, textMaterial);
 scene.add(text);
 ```
@@ -72,3 +72,24 @@ now you'll notice that it's centerd properly and remember to remove the cube and
 ```js
 textGeometry.center();
 ```
+
+now we need to add a lot of donuts to our scene in diffrent positions try to do it yourself first
+
+```js
+const donutGeometry = new THREE.TorusGeometry();
+const donutMaterial = new THREE.MeshMatcapMaterial({ matcap: matcaps });
+for (let i = 0; i < 250; i++) {
+  const donut = new THREE.Mesh(donutGeometry, donutMaterial);
+  const randoms = Math.random();
+  donut.position.x = (Math.random() - 0.5) * 20;
+  donut.position.y = (Math.random() - 0.5) * 20;
+  donut.position.z = (Math.random() - 0.5) * 20;
+  donut.rotation.x = Math.random() * Math.PI;
+  donut.rotation.y = Math.random() * Math.PI;
+  const scale = Math.random();
+  donut.scale.set(scale, scale, scale);
+  scene.add(donut);
+}
+```
+
+and with this we finished our lesson
