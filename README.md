@@ -67,4 +67,8 @@ textGeometry.translate(
 );
 ```
 
-now you'll notice that it's centerd properly and remember to remove the cube
+now you'll notice that it's centerd properly and remember to remove the cube and then remove this whole code and there's already a function that will do this for us
+
+```js
+textGeometry.center();
+```
