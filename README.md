@@ -55,3 +55,16 @@ scene.add(text);
 ```
 
 refresh the page and you'll notice that you have a 3d text great right but you can also notice that it's not centered so how could we center our text first you should know that every geometry have somthing like an invesible box surronding it so we need to access this box and move our geometry so it will be centered
+to do this we will first compute this box on our geometry then we will log the dimentions of our box then we will update it's dimention so it will be centerd
+
+```js
+textGeometry.computeBoundingBox();
+console.log(textGeometry.boundingBox);
+textGeometry.translate(
+  -(textGeometry.boundingBox.max.x - 0.02) * 0.5,
+  -(textGeometry.boundingBox.max.y - 0.02) * 0.5,
+  -(textGeometry.boundingBox.max.z - 0.03) * 0.5
+);
+```
+
+now you'll notice that it's centerd properly and remember to remove the cube
