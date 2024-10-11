@@ -71,10 +71,6 @@ window.addEventListener("resize", () => {
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 });
 
-// Axes
-const helper = new THREE.AxesHelper();
-scene.add(helper);
-
 // Camera
 const camera = new THREE.PerspectiveCamera(
   75,
