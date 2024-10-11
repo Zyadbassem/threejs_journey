@@ -11,7 +11,7 @@ const canvas = document.querySelector("canvas.webgl");
 // Textures
 const textureManager = new THREE.LoadingManager();
 const textureLoader = new THREE.TextureLoader(textureManager);
-const matcaps = textureLoader.load("static/textures/matcaps/1.png");
+const matcaps = textureLoader.load("textures/matcaps/1.png");
 matcaps.colorSpace = THREE.SRGBColorSpace;
 
 // Scene
@@ -19,7 +19,7 @@ const scene = new THREE.Scene();
 
 // 3D text
 const fontLoader = new FontLoader();
-fontLoader.load("static/helvetiker_regular.typeface.json", (font) => {
+fontLoader.load("helvetiker_regular.typeface.json", (font) => {
   const textGeometry = new TextGeometry("Hello Three.js", {
     font: font,
     size: 0.5,
